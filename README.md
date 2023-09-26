@@ -1,7 +1,4 @@
-# Page maker
-
-Use [puck](https://github.com/measuredco/puck) to create a drag and drop page maker.
-
+# Style to tailwind css name
 
 ## Start
 ```

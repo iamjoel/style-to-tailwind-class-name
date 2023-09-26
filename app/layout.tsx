@@ -1,4 +1,3 @@
-import "@measured/puck/dist/index.css";
 import "./styles.css";
 
 export default function RootLayout({
