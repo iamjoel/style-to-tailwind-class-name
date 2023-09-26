@@ -1,0 +1,25 @@
+'use client'
+import React from 'react'
+import { ComponentConfig } from "@measured/puck"
+import { ComponentName } from '@chakra-ui/react'
+
+export type ComponentNameProps = {
+  text: string
+}
+
+const ComponentNameConfig: ComponentConfig<ComponentNameProps> = {
+  fields: {
+    text: { type: "text" },
+  },
+  defaultProps: {
+    text: "ComponentName",
+  },
+  render: ({ text }) => (
+    <ComponentName
+    >
+      {text}
+    </ComponentName>
+  )
+}
+
+export default ComponentNameConfig
