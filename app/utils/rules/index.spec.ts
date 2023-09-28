@@ -1,4 +1,4 @@
-import { getClassName, sortClassNames } from ".";
+import { getClassName, sortStyles } from ".";
 
 describe('get class name', () => {
   test('find class name', () => {
@@ -13,10 +13,29 @@ describe('get class name', () => {
   })
 })
 
-describe('sort class names', () => {
-  test('sort class names', () => {
-    expect(sortClassNames('p-3 text-[13px] text-gray-500 space-x-2 flex h-2 items-center mr-2 my-1'.split(' ')).join(' '))
-    .toEqual('my-1 mr-2 flex items-center h-2 p-3 text-[13px] text-gray-500 space-x-2')
+describe('sort styles', () => {
+  test('sort styles', () => {
+    expect(sortStyles([
+      {key: 'padding', value: '12px'},
+      {key: 'font-size', value: '13px'},
+      {key: 'color', value: '#9CA3AF'},
+      {key: 'margin-left', value: '8px'},
+      {key: 'display', value: 'flex'},
+      {key: 'height', value: '8px'},
+      {key: 'align-items', value: 'center'},
+      {key: 'margin-right', value: '8px'},
+      {key: 'margin-top', value: '4px'}
+    ])).toEqual([
+      {key: 'margin-top', value: '4px'},
+      {key: 'margin-left', value: '8px'},
+      {key: 'margin-right', value: '8px'},
+      {key: 'display', value: 'flex'},
+      {key: 'align-items', value: 'center'},
+      {key: 'height', value: '8px'},
+      {key: 'padding', value: '12px'},
+      {key: 'font-size', value: '13px'},
+      {key: 'color', value: '#9CA3AF'},
+    ])
   })
 })
 

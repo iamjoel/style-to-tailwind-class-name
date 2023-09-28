@@ -1,6 +1,8 @@
 import flex from './flex'
-import { getClassNameRank } from './class-name-rank'
+import { StyleType } from './type'
+import { getStyleRank } from './style-rank'
 
+// filter style => sort style => transform style => map to class name
 const rules = [...flex]
 
 export const getClassName = (key: string, value: string) => {
@@ -12,12 +14,11 @@ export const getClassName = (key: string, value: string) => {
   }
 }
 
-export const sortClassNames = (classNames: string[]) => {
-  const res = [...classNames]
-  // console.log(classNames.map(className => getClassNameRank(className)))
+export const sortStyles = (styles: StyleType[]) => {
+  const res = [...styles]
   res.sort((a, b) => {
-    const rankA = getClassNameRank(a)
-    const rankB = getClassNameRank(b)
+    const rankA = getStyleRank(a.key)
+    const rankB = getStyleRank(b.key)
     return rankA - rankB
   })
   return res
