@@ -1,12 +1,12 @@
-import { getClassName, sortStyles } from ".";
+import { getClassName, sortStyles, getClassNames } from ".";
 
 describe('get class name', () => {
   test('find class name', () => {
-    expect(getClassName('display', 'flex')).toEqual('flex')
+    expect(getClassName({key: 'display', value: 'flex'})).toEqual('flex')
   })
 
   test('not find class name', () => {
-    expect(getClassName('display', 'abc')).toEqual({
+    expect(getClassName({key: 'display', value: 'abc'})).toEqual({
       key: 'display',
       value: 'abc'
     })
@@ -39,3 +39,29 @@ describe('sort styles', () => {
   })
 })
 
+// margin: 8px;
+// padding: 12px;
+// font-size: 13px;
+// color: #9CA3AF;
+// height: 8px;
+// integrated test
+describe('get class names', () => {
+  test('get class names', () => {
+    expect(getClassNames(`
+      display: flex;
+      align-items: center;
+    `)).toEqual({
+      classNames: [
+        'flex',
+        'items-center',
+        // 'm-8',
+        // 'p-12',
+        // 'text-13',
+        // 'text-#9CA3AF',
+        // 'h-8'
+      ],
+      unMatchedStyles: []
+    })
+  })
+
+})

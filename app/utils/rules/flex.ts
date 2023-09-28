@@ -37,7 +37,8 @@ const alignItems = [
 
 
 const rules = [
-  ...flex
+  ...flex,
+  ...alignItems
 ]
 
 export default rules
