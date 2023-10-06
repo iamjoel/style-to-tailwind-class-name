@@ -17,19 +17,11 @@ describe('transform style', () => {
       value: '4px 8px'
     })).toEqual([
       {
-        key: 'margin-top',
+        key: 'margin-y',
         value: '4px'
       },
       {
-        key: 'margin-bottom',
-        value: '4px'
-      },
-      {
-        key: 'margin-left',
-        value: '8px'
-      },
-      {
-        key: 'margin-right',
+        key: 'margin-x',
         value: '8px'
       },
     ])
@@ -49,11 +41,7 @@ describe('transform style', () => {
         value: '8px'
       },
       {
-        key: 'margin-left',
-        value: '6px'
-      },
-      {
-        key: 'margin-right',
+        key: 'margin-x',
         value: '6px'
       },
     ])

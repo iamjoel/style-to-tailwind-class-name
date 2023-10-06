@@ -1,7 +1,7 @@
 const styleRank = [
   // margin
   'margin',
-  'margin-top', 'margin-bottom', 'margin-left', 'margin-right',
+  'margin-y', 'margin-top', 'margin-bottom', 'margin-x', 'margin-left', 'margin-right',
   // border
   'box-shadow',
   'border', 'border-color', 'border-width', 'border-style',
@@ -24,7 +24,7 @@ const styleRank = [
   'width', 'min-width','max-width', 
   // padding
   'padding',
-  'padding-top', 'padding-bottom', 'padding-left', 'padding-right',
+  'padding-y', 'padding-top', 'padding-bottom', 'padding-x', 'padding-left', 'padding-right',
   // font
   'text-align',
   'font-size',

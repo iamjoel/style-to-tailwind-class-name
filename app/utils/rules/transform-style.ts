@@ -23,19 +23,11 @@ export const transformDirection = ({key, value}: StyleType) => {
   if(directions.length === 2) {
     return [
       {
-        key: `${key}-top`,
+        key: `${key}-y`,
         value: directions[0]
       },
       {
-        key: `${key}-bottom`,
-        value: directions[0]
-      },
-      {
-        key: `${key}-left`,
-        value: directions[1]
-      },
-      {
-        key: `${key}-right`,
+        key: `${key}-x`,
         value: directions[1]
       },
     ]
@@ -52,11 +44,7 @@ export const transformDirection = ({key, value}: StyleType) => {
         value: directions[2]
       },
       {
-        key: `${key}-left`,
-        value: directions[1]
-      },
-      {
-        key: `${key}-right`,
+        key: `${key}-x`,
         value: directions[1]
       },
     ]
