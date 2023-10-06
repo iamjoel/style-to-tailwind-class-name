@@ -1,9 +1,9 @@
-import flex from './flex'
+import flex from './config/flex'
 import parseStyle from 'style-to-object'
 import { StyleType } from './type'
 import { getStyleRank } from './style-rank'
 import { ignoreStyles } from './ignore-style-config'
-
+import transformStyle from './transform-style'
 const rules = [...flex]
 
 export const sortStyles = (styles: StyleType[]) => {
@@ -16,12 +16,6 @@ export const sortStyles = (styles: StyleType[]) => {
   return res
 }
 
-export const transformStyles = (styles: StyleType[]) => {
-  // TODO: transform styles.
-  // short name to full: margin, padding, border, flex, position, display, font, color, background,
-  return styles
-}
-
 export const getClassName = ({key, value}: StyleType) => {
   const rule = rules.find(rule => rule.key === key && rule.value === value)
   return rule ? rule.className : {
@@ -31,16 +25,21 @@ export const getClassName = ({key, value}: StyleType) => {
 }
 
 
-// filter style => sort style => transform style => map to class name
+/*
+* 1. filter style
+* 2. transform style
+* 3. sort style
+* 4. map to class name
+*/
 export const getClassNames = (styles: string) => {
   const styleObj = parseStyle(styles)
   const styleArr = Object.keys(styleObj).map(key => ({
     key,
     value: styleObj[key]
   })).filter(({key}) => !ignoreStyles.includes(key))
-  const sortedStyles = sortStyles(styleArr)
-  const transformedStyles = transformStyles(sortedStyles)
-  const mappedClassNames = transformedStyles.map(item => getClassName(item))
+  const transformedStyles = styleArr.map(style => transformStyle(style)).flat(1)
+  const sortedStyles = sortStyles(transformedStyles)
+  const mappedClassNames = sortedStyles.map(item => getClassName(item))
   const classNames = []
   const unMatchedStyles = []
   // console.log(transformedStyles)

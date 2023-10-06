@@ -1,4 +1,4 @@
-import { getClassName } from ".";
+import { getClassName } from "..";
 
 describe('flex', () => {
   test('display: flex', () => {
