@@ -1,4 +1,4 @@
-import { StyleType } from './type'
+import { StyleType } from '@/config/rules/type'
 
 // short name to full: margin, padding, border, flex, position, display, font, color, background,
 const transformStyle = ({key, value}: StyleType) => {

@@ -1,0 +1,1 @@
+export const LEN_ITEM_VALUE = 4

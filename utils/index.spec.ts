@@ -1,12 +1,12 @@
-import { getClassName, sortStyles, getClassNames } from ".";
+import { mapToClassName, sortStyles, getClassNames } from ".";
 
 describe('get class name', () => {
   test('find class name', () => {
-    expect(getClassName({key: 'display', value: 'flex'})).toEqual('flex')
+    expect(mapToClassName({key: 'display', value: 'flex'})).toEqual('flex')
   })
 
   test('not find class name', () => {
-    expect(getClassName({key: 'display', value: 'abc'})).toEqual({
+    expect(mapToClassName({key: 'display', value: 'abc'})).toEqual({
       key: 'display',
       value: 'abc'
     })
@@ -64,4 +64,67 @@ describe('get class names', () => {
     })
   })
 
+  test('margin', () => {
+    expect(getClassNames(`
+      margin: 8px;
+    `)).toEqual({
+      classNames: [
+        'm-2',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      margin: 8px 4px;
+    `)).toEqual({
+      classNames: [
+        'my-2', 'mx-1'
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      margin-top: 8px;
+      margin-bottom: 16px;
+      margin-left: 6px;
+      margin-right: 4px;
+    `)).toEqual({
+      classNames: [
+        'mt-2', 'mb-4', 'ml-1.5', 'mr-1'
+      ],
+      unMatchedStyles: []
+    })
+  })
+
+  test('padding', () => {
+    expect(getClassNames(`
+      padding: 8px;
+    `)).toEqual({
+      classNames: [
+        'p-2',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      padding: 8px 4px;
+    `)).toEqual({
+      classNames: [
+        'py-2', 'px-1'
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      padding-top: 8px;
+      padding-bottom: 16px;
+      padding-left: 6px;
+      padding-right: 4px;
+    `)).toEqual({
+      classNames: [
+        'pt-2', 'pb-4', 'pl-1.5', 'pr-1'
+      ],
+      unMatchedStyles: []
+    })
+  })
 })
