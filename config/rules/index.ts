@@ -1,4 +1,5 @@
 // position
+import position from './position'
 // flex
 import flex from './flex'
 // spacing
@@ -9,5 +10,5 @@ import padding from './padding'
 // width, height
 
 
-const rules = [flex, margin, padding].flat(1)
+const rules = [position, flex, margin, padding].flat(1)
 export default rules

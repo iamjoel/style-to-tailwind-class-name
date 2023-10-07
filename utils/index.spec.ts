@@ -64,6 +64,37 @@ describe('get class names', () => {
     })
   })
 
+  test('position', () => {
+    ['static', 'fixed', 'absolute', 'relative', 'sticky'].forEach(value => {
+      expect(getClassNames(`
+        position: ${value};
+      `)).toEqual({
+        classNames: [
+          value
+        ],
+        unMatchedStyles: []
+      })
+    })
+
+    expect(getClassNames(`
+      z-index: 10;
+    `)).toEqual({
+      classNames: [
+        'z-10'
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      top: 4px; bottom: 6px; left: 8px;right: 10px;
+    `)).toEqual({
+      classNames: [
+        'top-1', 'bottom-1.5', 'left-2', 'right-2.5'
+      ],
+      unMatchedStyles: []
+    })
+  })
+
   test('margin', () => {
     expect(getClassNames(`
       margin: 8px;
