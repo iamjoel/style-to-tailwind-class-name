@@ -127,6 +127,34 @@ describe('get class names', () => {
     })
   })
 
+  test('border', () => {
+    expect(getClassNames(`
+      border: 2px solid;
+    `)).toEqual({
+      classNames: [
+        'border-2',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      border: 2px dashed;
+    `)).toEqual({
+      classNames: [
+        'border-2', 'border-dashed'
+      ],
+      unMatchedStyles: []
+    })
+    expect(getClassNames(`
+      border-width: 1px; border-style: solid;
+    `)).toEqual({
+      classNames: [
+        'border', 'border-solid'
+      ],
+      unMatchedStyles: []
+    })
+  })
+
   test('padding', () => {
     expect(getClassNames(`
       padding: 8px;

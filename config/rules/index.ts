@@ -1,5 +1,5 @@
 import margin from './margin'
-// border
+import border from './border'
 // transform
 import position from './position'
 // display
@@ -11,5 +11,5 @@ import padding from './padding'
 // typography
 // child
 
-const rules = [position, flex, margin, padding].flat(1)
+const rules = [margin, border, position, flex , padding].flat(1)
 export default rules

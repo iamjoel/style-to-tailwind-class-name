@@ -5,6 +5,9 @@ const transformStyle = ({key, value}: StyleType) => {
   if(['margin', 'padding'].includes(key)) {
     return transformDirection({key, value})
   }
+  if(key === 'border') {
+    return parseBorder({key, value})
+  }
   return [{key, value}]
 }
 
@@ -70,6 +73,24 @@ export const transformDirection = ({key, value}: StyleType) => {
       },
     ]
   }
+}
+
+export const parseBorder = ({key, value}: StyleType) => {
+  const values = value.split(' ')
+  const res = [
+    {
+      key: 'border-width',
+      value: values[0],
+    }
+  ]
+  if(values[1] && values[1] !== 'solid') {
+    res.push({
+      key: 'border-style',
+      value: values[1],
+    })
+  }
+  // TODO: color
+  return res
 }
 
 export default transformStyle
