@@ -43,6 +43,27 @@ supportKeyAndClassNames.forEach(({key, className}) => {
   })
 })
 
-// console.log(rules)
+export const dynamicRules = [
+  {
+    key: 'padding',
+    className: 'p-[{value}]',
+  },
+  {
+    key: 'padding-top',
+    className: 'pt-[{value}]',
+  },
+  {
+    key: 'padding-bottom',
+    className: 'pb-[{value}]',
+  },
+  {
+    key: 'padding-left',
+    className: 'pl-[{value}]',
+  },
+  {
+    key: 'padding-right',
+    className: 'pr-[{value}]',
+  },
+]
 
 export default rules

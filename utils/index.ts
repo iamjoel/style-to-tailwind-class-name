@@ -1,4 +1,4 @@
-import rules from '@/config/rules'
+import rules, { dynamicRules } from '@/config/rules'
 import parseStyle from 'style-to-object'
 import { StyleType } from '@/config/rules/type'
 import { getStyleRank } from './style-rank'
@@ -17,7 +17,14 @@ export const sortStyles = (styles: StyleType[]) => {
 
 export const mapToClassName = ({key, value}: StyleType) => {
   const rule = rules.find(rule => rule.key === key && rule.value === value)
-  return rule ? rule.className : {
+  if(rule) 
+    return rule.className
+  // match dynamic rules. eg: margin: 100px => m-[100px]
+  const dynamicRule = dynamicRules.find(rule => rule.key === key)
+  if(dynamicRule)
+    return dynamicRule.className.replace('{value}', value)
+  
+  return {
     key,
     value
   }

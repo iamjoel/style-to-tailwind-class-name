@@ -50,15 +50,12 @@ describe('get class names', () => {
     expect(getClassNames(`
       display: flex;
       align-items: center;
+      margin: 103px;
     `)).toEqual({
       classNames: [
+        'm-[103px]',
         'flex',
         'items-center',
-        // 'm-8',
-        // 'p-12',
-        // 'text-13',
-        // 'text-#9CA3AF',
-        // 'h-8'
       ],
       unMatchedStyles: []
     })

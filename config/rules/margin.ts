@@ -43,6 +43,27 @@ supportKeyAndClassNames.forEach(({key, className}) => {
   })
 })
 
-// console.log(rules)
+export const dynamicRules = [
+  {
+    key: 'margin',
+    className: 'm-[{value}]',
+  },
+  {
+    key: 'margin-top',
+    className: 'mt-[{value}]',
+  },
+  {
+    key: 'margin-bottom',
+    className: 'mb-[{value}]',
+  },
+  {
+    key: 'margin-left',
+    className: 'ml-[{value}]',
+  },
+  {
+    key: 'margin-right',
+    className: 'mr-[{value}]',
+  },
+]
 
 export default rules
