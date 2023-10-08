@@ -152,6 +152,82 @@ describe('get class names', () => {
     })
   })
 
+  test('height', () => {
+    expect(getClassNames(`
+      height: 8px;
+    `)).toEqual({
+      classNames: [
+        'h-2',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      height: 50%;
+    `)).toEqual({
+      classNames: [
+        'h-1/2',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      height: 17px;
+    `)).toEqual({
+      classNames: [
+        'h-[17px]',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      min-height: 4px;
+    `)).toEqual({
+      classNames: [
+        'min-h-[4px]',
+      ],
+      unMatchedStyles: []
+    })
+  })
+
+  test('width', () => {
+    expect(getClassNames(`
+      width: 8px;
+    `)).toEqual({
+      classNames: [
+        'w-2',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      width: 50%;
+    `)).toEqual({
+      classNames: [
+        'w-1/2',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      width: 17px;
+    `)).toEqual({
+      classNames: [
+        'w-[17px]',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      min-width: 4px;
+    `)).toEqual({
+      classNames: [
+        'min-w-[4px]',
+      ],
+      unMatchedStyles: []
+    })
+  })
+
   test('padding', () => {
     expect(getClassNames(`
       padding: 8px;
