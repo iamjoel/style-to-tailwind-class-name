@@ -1,5 +1,9 @@
 import "./styles.css";
 
+export const metadata = {
+  title: 'Tailwindify',
+}
+
 export default function RootLayout({
   children,
 }: {

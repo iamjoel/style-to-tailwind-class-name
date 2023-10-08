@@ -1,4 +1,5 @@
-# Styles to tailwind class name
+# Tailwindify
+Convert styles to tailwind class names.
 
 ## Start
 ```
@@ -12,10 +13,11 @@ Navigate to the homepage at https://localhost:3000. To edit the homepage, access
 - [x] Transform style to tailwind class name.
 - [x] Sort class name.
 - [x] Support Rules: Position, Flex, Border, Margin, Padding
+- UI
+  - [x] show transformed class name and unmatched style.
 
 ## Roadmap
 - UI: 
-  - show transformed class name and unmatched style.
-  - support filter rule group.
+  - support filter rule group. Group includes all, layout and Detail.
 - Parse color to tailwind color name. Support read from tailwind config.
 - To support more Rules.
