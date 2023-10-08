@@ -11,10 +11,10 @@ const Preview: FC<Props> = ({
   className
 }) => {
   return (
-    <div className={cn(className)}>
-      <div className='mt-4 text-xl font-bold'>Preview</div>
+    <div className={cn(className, 'mt-4')}>
+      <div className='text-xl font-bold'>Preview</div>
       <div
-        className='flex justify-center p-3 rounded-xl shadow-xl bg-slate-50'
+        className='mt-2 flex justify-center p-3 rounded-xl shadow-xl bg-slate-50'
       >
         <div style={style}>
           Text

@@ -1,9 +1,11 @@
 'use client'
-import React, { FC, useState } from 'react'
-import { ChakraProvider, Textarea, Button } from '@chakra-ui/react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
+import { ChakraProvider, Textarea } from '@chakra-ui/react'
 import { getClassNames } from '@/utils'
 import parseStyle from 'style-to-object'
 import Preview from './components/preview'
+import PrimaryBtn from './components/primary-btn'
+import copy from 'copy-to-clipboard'
 
 const testStyles = `display: flex;
 align-items: center;
@@ -30,23 +32,37 @@ const Page: FC = () => {
     })
     return parseStyle(matchedStyle)
   })()
+
   const handleTransform = () => {
     const { classNames, unMatchedStyles } = getClassNames(styles)
     setClassNames(classNames.join(' '))
     setUnMatchedStyles(unMatchedStyles.map(({ key, value }) => `${key}: ${value};`).join('\n'))
   }
+
+  const [hasCopied, setHasCopied] = useState(false)
+  const handleCopy = useCallback(() => {
+    copy(classNames)
+    setHasCopied(true)
+  }, [classNames])
+  useEffect(() => {
+    if (!hasCopied) return
+    const timer = setTimeout(() => {
+      setHasCopied(false)
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [hasCopied])
   return (
     <ChakraProvider>
       <div className='mx-auto flex pt-[100px] w-[1200px]  justify-between space-x-6 divide-x'>
         <div className='grow'>
-          <div className='flex justify-between'>
+          <div className='flex justify-between items-center'>
             <div className='text-2xl font-bold'>Styles</div>
-            <Button
-              className='mt-2' colorScheme='teal' size='sm'
+            <PrimaryBtn
+              className='mt-2'
               onClick={handleTransform}
             >
               Transform
-            </Button>
+            </PrimaryBtn>
           </div>
           <Textarea
             className='mt-3 w-full !h-52'
@@ -56,11 +72,22 @@ const Page: FC = () => {
           <Preview style={styleObj} />
         </div>
         <div className='grow pl-6'>
-          <div className='text-2xl font-bold'>Results</div>
+          <div className='flex items-center justify-between'>
+            <div className='text-2xl font-bold'>Results</div>
+            {classNames && (
+              <PrimaryBtn
+                className='mt-2'
+                onClick={handleCopy}
+              >
+                {hasCopied ? 'Copied' : 'Copy'}
+              </PrimaryBtn>
+            )}
+          </div>
           <div>
             <Textarea
               className='mt-3 w-full !max-h-20'
               value={classNames}
+              disabled
             />
           </div>
           {unMatchedStyles && (
