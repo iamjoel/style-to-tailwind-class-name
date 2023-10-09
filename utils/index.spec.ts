@@ -259,4 +259,19 @@ describe('get class names', () => {
       unMatchedStyles: []
     })
   })
+
+  test('typography', () => {
+    expect(getClassNames(`
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+      text-align: center;
+    `)).toEqual({
+      classNames: [
+        'leading-4', 'text-center', 'text-xs', 'font-bold', 
+      ],
+      unMatchedStyles: []
+    })
+  })
+
 })

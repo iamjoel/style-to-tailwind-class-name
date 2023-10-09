@@ -12,7 +12,7 @@ Navigate to the homepage at https://localhost:3000. To edit the homepage, access
 ## Feature
 - [x] Transform style to tailwind class name.
 - [x] Sort class name.
-- [x] Support Rules: Position, Flex, Border, Margin, Padding
+- [x] Support Rules: position, flex, border, margin, padding, typography
 - UI
   - [x] show transformed class name and unmatched style.
 

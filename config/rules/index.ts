@@ -9,10 +9,11 @@ import height, { dynamicRules as heightDynamicRules } from './height'
 // horizontal
 import width, { dynamicRules as widthDynamicRules } from './width'
 import padding, { dynamicRules as paddingDynamicRules } from './padding'
-// typography
+import typography, { dynamicRules as typographyDynamicRules } from './typography'
+// cursor
 // child
 
-const rules = [margin, border, position, flex, height, width, padding].flat(1)
+const rules = [margin, border, position, flex, height, width, padding, typography].flat(1)
 export default rules
 
-export const dynamicRules = [marginDynamicRules, heightDynamicRules, widthDynamicRules, paddingDynamicRules].flat(1)
+export const dynamicRules = [marginDynamicRules, heightDynamicRules, widthDynamicRules, paddingDynamicRules, typographyDynamicRules].flat(1)

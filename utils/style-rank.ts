@@ -26,6 +26,7 @@ const styleRank = [
   'padding',
   'padding-y', 'padding-top', 'padding-bottom', 'padding-x', 'padding-left', 'padding-right',
   // font
+  'line-height',
   'text-align',
   'font-size',
   'font-weight',

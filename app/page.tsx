@@ -16,6 +16,8 @@ border: 1px solid #ddd;
 border-radius: 4px;
 background: red;
 font-size: 14px;
+text-align: center;
+line-height: 1.5;
 color: #fff;
 `
 const Page: FC = () => {
