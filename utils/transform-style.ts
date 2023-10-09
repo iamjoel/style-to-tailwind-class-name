@@ -8,6 +8,9 @@ const transformStyle = ({key, value}: StyleType) => {
   if(key === 'border') {
     return parseBorder({key, value})
   }
+  if(key === 'background') {
+    return parseBackground({key, value})
+  }
   return [{key, value}]
 }
 
@@ -89,8 +92,35 @@ export const parseBorder = ({key, value}: StyleType) => {
       value: values[1],
     })
   }
-  // TODO: color
+  const color = values.find(isColor)
+  if(color) {
+    res.push({
+      key: 'border-color',
+      value: color,
+    })
+  }
+
   return res
+}
+
+
+export const parseBackground = ({key, value}: StyleType) => {
+  const values = value.split(' ')
+  const res = []
+  const color = values.find(isColor)
+  if(color) {
+    res.push({
+      key: 'background-color',
+      value: color,
+    })
+  }
+  return res
+}
+
+function isColor(value) {
+  if(value.startsWith('#') || value.startsWith('rgb') || /^\[a-z]$/) {
+    return true
+  }
 }
 
 export default transformStyle

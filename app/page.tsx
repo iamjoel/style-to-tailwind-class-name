@@ -6,6 +6,7 @@ import parseStyle from 'style-to-object'
 import Preview from './components/preview'
 import PrimaryBtn from './components/primary-btn'
 import copy from 'copy-to-clipboard'
+import { toReactStyle } from '@/utils/to-camel'
 
 const testStyles = `display: flex;
 align-items: center;
@@ -14,20 +15,26 @@ margin: 4px 8px;
 width: 100px;
 border: 1px solid #ddd;
 border-radius: 4px;
-background: red;
+background: #f60;
 font-size: 14px;
 text-align: center;
 line-height: 1.5;
 color: #fff;
 `
+
+
+
+
 const Page: FC = () => {
   const [styles, setStyles] = useState(testStyles)
   const styleObj = parseStyle(styles)
+
   const [classNames, setClassNames] = useState('')
   const [unMatchedStyles, setUnMatchedStyles] = useState('')
   const matchedStyleObj = (() => {
     if (!classNames) return {}
     const unMatchedStylesArr = unMatchedStyles.split('\n')
+    console.log(unMatchedStylesArr)
     let matchedStyle = styles
     unMatchedStylesArr.forEach(style => {
       matchedStyle = matchedStyle.replace(style, '')
@@ -71,7 +78,7 @@ const Page: FC = () => {
             value={styles}
             onChange={e => setStyles(e.target.value)}
           />
-          <Preview style={styleObj} />
+          <Preview style={toReactStyle(styleObj)} />
         </div>
         <div className='grow pl-6'>
           <div className='flex items-center justify-between'>
@@ -104,7 +111,7 @@ const Page: FC = () => {
             </div>
           )}
           {classNames && (
-            <Preview style={matchedStyleObj} />
+            <Preview style={toReactStyle(matchedStyleObj)} />
           )}
 
         </div>

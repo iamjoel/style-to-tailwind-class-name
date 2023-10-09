@@ -61,6 +61,26 @@ describe('get class names', () => {
     })
   })
 
+  test('background', () => {
+    expect(getClassNames(`
+      background-color: #fff;
+    `)).toEqual({
+      classNames: [
+        'bg-white',
+      ],
+      unMatchedStyles: []
+    })
+
+    expect(getClassNames(`
+      background-color: #faa;
+    `)).toEqual({
+      classNames: [
+        'bg-[#faa]',
+      ],
+      unMatchedStyles: []
+    })
+  })
+
   test('position', () => {
     ['static', 'fixed', 'absolute', 'relative', 'sticky'].forEach(value => {
       expect(getClassNames(`

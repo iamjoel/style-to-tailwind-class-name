@@ -4,9 +4,11 @@ const styleRank = [
   'margin-y', 'margin-top', 'margin-bottom', 'margin-x', 'margin-left', 'margin-right',
   // border
   'box-shadow',
-  'border', 'border-color', 'border-width', 'border-style',
+  'border-radius',
+  'border', 'border-width', 'border-style', 'border-color',
   // transform
   'transform', 
+  'background', 'background-color', 'background-image', 'background-position', 'background-size', 'background-repeat',
   'cursor', 'user-select',
   // position
   'position', 'absolute',  'fixed', 'sticky', 'static',
@@ -19,7 +21,7 @@ const styleRank = [
   'align-items',
   'height', 'max-height', 'min-height', 
   // horizontal
-  'justify-',
+  'justify-content',
   'flex-grow', 'flex-shrink',
   'width', 'min-width','max-width', 
   // padding

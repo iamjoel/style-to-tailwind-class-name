@@ -1,6 +1,7 @@
 import margin, { dynamicRules as marginDynamicRules } from './margin'
-import border from './border'
+import border, { dynamicRules as borderDynamicRules } from './border'
 // transform
+import background, { dynamicRules as backgroundDynamicRules } from './background'
 import position from './position'
 // display
 import flex from './flex'
@@ -13,7 +14,7 @@ import typography, { dynamicRules as typographyDynamicRules } from './typography
 // cursor
 // child
 
-const rules = [margin, border, position, flex, height, width, padding, typography].flat(1)
+const rules = [margin, border, background, position, flex, height, width, padding, typography].flat(1)
 export default rules
 
-export const dynamicRules = [marginDynamicRules, heightDynamicRules, widthDynamicRules, paddingDynamicRules, typographyDynamicRules].flat(1)
+export const dynamicRules = [marginDynamicRules, borderDynamicRules, backgroundDynamicRules, heightDynamicRules, widthDynamicRules, paddingDynamicRules, typographyDynamicRules].flat(1)

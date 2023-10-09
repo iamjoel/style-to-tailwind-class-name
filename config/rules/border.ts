@@ -79,4 +79,10 @@ const rules = [
   ...borderStyle
 ]
 
+export const dynamicRules = [
+  {
+    key: 'border-color',
+    className: 'border-[{value}]',
+  }
+]
 export default rules
