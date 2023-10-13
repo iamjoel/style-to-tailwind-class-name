@@ -1,12 +1,13 @@
 'use client'
 import React, { FC, useCallback, useEffect, useState } from 'react'
-import { ChakraProvider, Textarea } from '@chakra-ui/react'
+import { ChakraProvider, Textarea, Switch } from '@chakra-ui/react'
 import { getClassNames } from '@/utils'
 import parseStyle from 'style-to-object'
 import Preview from './components/preview'
 import PrimaryBtn from './components/primary-btn'
 import copy from 'copy-to-clipboard'
 import { toReactStyle } from '@/utils/to-camel'
+import { typographyStyle } from '@/config/whitelist-style-config'
 
 const testStyles = `display: flex;
 align-items: center;
@@ -17,6 +18,7 @@ border: 1px solid #ddd;
 border-radius: 4px;
 background: #f60;
 font-size: 14px;
+font-weight: 500;
 text-align: center;
 line-height: 1.5;
 color: #FCFCFD;
@@ -26,6 +28,7 @@ color: #FCFCFD;
 
 
 const Page: FC = () => {
+  const [typographyStyleOnly, setTypographyStyleOnly] = useState(false)
   const [styles, setStyles] = useState(testStyles)
   const styleObj = parseStyle(styles)
 
@@ -43,10 +46,16 @@ const Page: FC = () => {
   })()
 
   const handleTransform = () => {
-    const { classNames, unMatchedStyles } = getClassNames(styles)
+    const { classNames, unMatchedStyles } = getClassNames(styles, typographyStyleOnly ? typographyStyle : undefined)
     setClassNames(classNames.join(' '))
     setUnMatchedStyles(unMatchedStyles.map(({ key, value }) => `${key}: ${value};`).join('\n'))
   }
+
+  useEffect(() => {
+    if (classNames) {
+      handleTransform()
+    }
+  }, [typographyStyleOnly])
 
   const [hasCopied, setHasCopied] = useState(false)
   const handleCopy = useCallback(() => {
@@ -66,12 +75,23 @@ const Page: FC = () => {
         <div className='grow'>
           <div className='flex justify-between items-center'>
             <div className='text-2xl font-bold'>Styles</div>
-            <PrimaryBtn
-              className='mt-2'
-              onClick={handleTransform}
-            >
-              Transform
-            </PrimaryBtn>
+            <div className='flex items-center space-x-2'>
+              <div className='flex items-center'>
+                <Switch
+                  colorScheme='teal'
+                  isChecked={typographyStyleOnly}
+                  onChange={e => setTypographyStyleOnly(e.target.checked)}
+                />
+                <span className='ml-2'>Typography style only</span>
+              </div>
+
+              <PrimaryBtn
+                className='mt-2'
+                onClick={handleTransform}
+              >
+                Transform
+              </PrimaryBtn>
+            </div>
           </div>
           <Textarea
             className='mt-3 w-full !h-52'

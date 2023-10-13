@@ -16,8 +16,7 @@ Navigate to the homepage at https://localhost:3000. To edit the homepage, access
 - [*] Parse color to tailwind color name. Support read from tailwind config.
 - UI
   - [x] show transformed class name and unmatched style.
+  - [x] support only show typography style.
 
 ## Roadmap
-- UI: 
-  - support filter rule group. Group includes all, layout and Detail.
 - To support more Rules.

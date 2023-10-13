@@ -50,12 +50,16 @@ export const mapToClassName = ({key, value}: StyleType) => {
 * 3. sort style
 * 4. map to class name
 */
-export const getClassNames = (styles: string) => {
+export const getClassNames = (styles: string, whiteList?: string[]) => {
   const styleObj = parseStyle(styles)
-  const styleArr = Object.keys(styleObj).map(key => ({
+  let styleArr = Object.keys(styleObj).map(key => ({
     key,
     value: styleObj[key]
   })).filter(({key}) => !ignoreStyles.includes(key))
+  if(whiteList?.length > 0) {
+    styleArr = styleArr.filter(({key}) => whiteList.includes(key))
+    console.log(styleArr)
+  }
   const transformedStyles = styleArr.map(style => transformStyle(style)).flat(1)
   const sortedStyles = sortStyles(transformedStyles)
   const mappedClassNames = sortedStyles.map(item => mapToClassName(item))

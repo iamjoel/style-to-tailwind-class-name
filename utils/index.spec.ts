@@ -1,3 +1,4 @@
+import { typographyStyle } from "@/config/whitelist-style-config";
 import { mapToClassName, sortStyles, getClassNames } from ".";
 
 describe('get class name', () => {
@@ -56,6 +57,32 @@ describe('get class names', () => {
         'm-[103px]',
         'flex',
         'items-center',
+      ],
+      unMatchedStyles: []
+    })
+  })
+
+  test('get whitelist', () => {
+    expect(getClassNames(`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 4px 8px;
+      width: 100px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #f60;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
+      font-weight: 500;
+      color: #FCFCFD;
+    `, typographyStyle)).toEqual({
+      classNames: [
+        'leading-normal',
+        'text-sm',
+        'font-medium',
+        'text-gray-25',
       ],
       unMatchedStyles: []
     })
