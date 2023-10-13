@@ -82,6 +82,7 @@ const rules = [
 export const dynamicRules = [
   {
     key: 'border-color',
+    isColor: true,
     className: 'border-[{value}]',
   }
 ]

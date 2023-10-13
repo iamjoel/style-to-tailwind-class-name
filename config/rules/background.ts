@@ -22,6 +22,7 @@ const rules = [...backgroundColor]
 export const dynamicRules = [
   {
     key: 'background-color',
+    isColor: true,
     className: 'bg-[{value}]',
   }
 ]

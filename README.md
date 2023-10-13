@@ -13,11 +13,11 @@ Navigate to the homepage at https://localhost:3000. To edit the homepage, access
 - [x] Transform style to tailwind class name.
 - [x] Sort class name.
 - [x] Support Rules: position, flex, border, margin, padding, typography
+- [*] Parse color to tailwind color name. Support read from tailwind config.
 - UI
   - [x] show transformed class name and unmatched style.
 
 ## Roadmap
 - UI: 
   - support filter rule group. Group includes all, layout and Detail.
-- Parse color to tailwind color name. Support read from tailwind config.
 - To support more Rules.

@@ -19,7 +19,7 @@ background: #f60;
 font-size: 14px;
 text-align: center;
 line-height: 1.5;
-color: #fff;
+color: #FCFCFD;
 `
 
 

@@ -1,4 +1,5 @@
 import { StyleType } from '@/config/rules/type'
+import { isValidColor, toHexColor } from './color'
 
 // short name to full: margin, padding, border, flex, position, display, font, color, background,
 const transformStyle = ({key, value}: StyleType) => {
@@ -92,11 +93,11 @@ export const parseBorder = ({key, value}: StyleType) => {
       value: values[1],
     })
   }
-  const color = values.find(isColor)
+  const color = values.find(isValidColor)
   if(color) {
     res.push({
       key: 'border-color',
-      value: color,
+      value: toHexColor(color),
     })
   }
 
@@ -107,20 +108,14 @@ export const parseBorder = ({key, value}: StyleType) => {
 export const parseBackground = ({key, value}: StyleType) => {
   const values = value.split(' ')
   const res = []
-  const color = values.find(isColor)
+  const color = values.find(isValidColor)
   if(color) {
     res.push({
       key: 'background-color',
-      value: color,
+      value: toHexColor(color),
     })
   }
   return res
-}
-
-function isColor(value) {
-  if(value.startsWith('#') || value.startsWith('rgb') || /^\[a-z]$/) {
-    return true
-  }
 }
 
 export default transformStyle

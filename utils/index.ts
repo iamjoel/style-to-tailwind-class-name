@@ -1,9 +1,10 @@
 import rules, { dynamicRules } from '@/config/rules'
 import parseStyle from 'style-to-object'
-import { StyleType } from '@/config/rules/type'
+import { StyleType, DynamicRule } from '@/config/rules/type'
 import { getStyleRank } from './style-rank'
 import { ignoreStyles } from '@/config/ignore-style-config'
 import transformStyle from './transform-style'
+import { getColorClassName } from './color'
 
 export const sortStyles = (styles: StyleType[]) => {
   const res = [...styles]
@@ -20,9 +21,21 @@ export const mapToClassName = ({key, value}: StyleType) => {
   if(rule) 
     return rule.className
   // match dynamic rules. eg: margin: 100px => m-[100px]
-  const dynamicRule = dynamicRules.find(rule => rule.key === key)
-  if(dynamicRule)
+  const dynamicRule:DynamicRule = dynamicRules.find(rule => rule.key === key)
+  if(dynamicRule) {
+    if(dynamicRule.isColor) {
+      const colorClassNameInfo = getColorClassName(value)
+      if(colorClassNameInfo.isMatched) {
+        const className = dynamicRule
+          .className
+          .replace('{value}', colorClassNameInfo.value)
+          .replace(/[\[\]]/g, '')
+        // debugger
+        return className
+      }
+    }
     return dynamicRule.className.replace('{value}', value)
+  }
   
   return {
     key,
@@ -48,7 +61,7 @@ export const getClassNames = (styles: string) => {
   const mappedClassNames = sortedStyles.map(item => mapToClassName(item))
   const classNames = []
   const unMatchedStyles = []
-  // console.log(transformedStyles)
+
   mappedClassNames.forEach((item) => {
     if(typeof item === 'string') {
       classNames.push(item)

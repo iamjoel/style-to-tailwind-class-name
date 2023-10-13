@@ -27,5 +27,3 @@ from outer to inner, from vertical to horizontal, from top left to right bottom,
 * padding
 * font-size, font-weight, color, hover: color
 * children space: space-y
-
-

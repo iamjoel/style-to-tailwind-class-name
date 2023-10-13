@@ -153,6 +153,7 @@ export const dynamicRules = [
   },
   {
     key: 'color',
+    isColor: true,
     className: 'text-[{value}]',
   }
 ]
