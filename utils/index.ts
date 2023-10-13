@@ -1,5 +1,5 @@
 import rules, { dynamicRules } from '@/config/rules'
-import parseStyle from 'style-to-object'
+import parseStyle from './parse-style'
 import { StyleType, DynamicRule } from '@/config/rules/type'
 import { getStyleRank } from './style-rank'
 import { ignoreStyles } from '@/config/ignore-style-config'

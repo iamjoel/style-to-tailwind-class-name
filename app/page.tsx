@@ -2,7 +2,7 @@
 import React, { FC, useCallback, useEffect, useState } from 'react'
 import { ChakraProvider, Textarea, Switch } from '@chakra-ui/react'
 import { getClassNames } from '@/utils'
-import parseStyle from 'style-to-object'
+import parseStyle from '@/utils/parse-style'
 import Preview from './components/preview'
 import PrimaryBtn from './components/primary-btn'
 import copy from 'copy-to-clipboard'
@@ -24,9 +24,6 @@ line-height: 1.5;
 color: #FCFCFD;
 `
 
-
-
-
 const Page: FC = () => {
   const [typographyStyleOnly, setTypographyStyleOnly] = useState(false)
   const [styles, setStyles] = useState(testStyles)
@@ -37,7 +34,7 @@ const Page: FC = () => {
   const matchedStyleObj = (() => {
     if (!classNames) return {}
     const unMatchedStylesArr = unMatchedStyles.split('\n')
-    console.log(unMatchedStylesArr)
+    // console.log(unMatchedStylesArr)
     let matchedStyle = styles
     unMatchedStylesArr.forEach(style => {
       matchedStyle = matchedStyle.replace(style, '')
@@ -51,12 +48,6 @@ const Page: FC = () => {
     setUnMatchedStyles(unMatchedStyles.map(({ key, value }) => `${key}: ${value};`).join('\n'))
   }
 
-  useEffect(() => {
-    if (classNames) {
-      handleTransform()
-    }
-  }, [typographyStyleOnly])
-
   const [hasCopied, setHasCopied] = useState(false)
   const handleCopy = useCallback(() => {
     copy(classNames)
@@ -69,6 +60,11 @@ const Page: FC = () => {
     }, 2000)
     return () => clearTimeout(timer)
   }, [hasCopied])
+
+  useEffect(() => {
+    handleTransform()
+  }, [typographyStyleOnly, styles])
+
   return (
     <ChakraProvider>
       <div className='mx-auto flex pt-[100px] w-[1200px]  justify-between space-x-6 divide-x'>
@@ -84,13 +80,6 @@ const Page: FC = () => {
                 />
                 <span className='ml-2'>Typography style only</span>
               </div>
-
-              <PrimaryBtn
-                className='mt-2'
-                onClick={handleTransform}
-              >
-                Transform
-              </PrimaryBtn>
             </div>
           </div>
           <Textarea
