@@ -1,6 +1,8 @@
 # Tailwindify
 Convert styles to tailwind class names.
 
+![](./demo.gif)
+
 ## Start
 ```
 npm install
