@@ -34,7 +34,7 @@ const Page: FC = () => {
   const matchedStyleObj = (() => {
     if (!classNames) return {}
     const unMatchedStylesArr = unMatchedStyles.split('\n')
-    // console.log(unMatchedStylesArr)
+
     let matchedStyle = styles
     unMatchedStylesArr.forEach(style => {
       matchedStyle = matchedStyle.replace(style, '')
@@ -44,8 +44,11 @@ const Page: FC = () => {
 
   const handleTransform = () => {
     const { classNames, unMatchedStyles } = getClassNames(styles, typographyStyleOnly ? typographyStyle : undefined)
-    setClassNames(classNames.join(' '))
-    setUnMatchedStyles(unMatchedStyles.map(({ key, value }) => `${key}: ${value};`).join('\n'))
+    if (classNames.length > 0) {
+      console.log(classNames)
+      setClassNames(classNames.join(' '))
+      setUnMatchedStyles(unMatchedStyles.map(({ key, value }) => `${key}: ${value};`).join('\n'))
+    }
   }
 
   const [hasCopied, setHasCopied] = useState(false)
@@ -95,6 +98,7 @@ const Page: FC = () => {
             {classNames && (
               <PrimaryBtn
                 className='mt-2'
+                variant='outline'
                 onClick={handleCopy}
               >
                 {hasCopied ? 'Copied' : 'Copy'}

@@ -30,7 +30,7 @@ export const mapToClassName = ({key, value}: StyleType) => {
           .className
           .replace('{value}', colorClassNameInfo.value)
           .replace(/[\[\]]/g, '')
-        // debugger
+
         return className
       }
     }

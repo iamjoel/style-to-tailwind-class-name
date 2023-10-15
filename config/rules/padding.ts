@@ -40,6 +40,13 @@ supportKeyAndClassNames.forEach(({key, className}) => {
       value: `${value * LEN_ITEM_VALUE}px`,
       className: `${className}-${value}`,
     })
+    if(value === 0) {
+      rules.push({
+        key,
+        value: `${value}`,
+        className: `${className}-0`,
+      })
+    }
   })
 })
 

@@ -7,12 +7,14 @@ type Props = {
   children: React.ReactNode
   className?: string
   size?: 'sm' | 'md' | 'lg'
+  variant?: 'solid' | 'outline' | 'ghost' | 'link'
   onClick: () => void
 }
 
 const PrimaryBtn: FC<Props> = ({
   children,
   className,
+  variant = 'solid',
   size = 'sm',
   onClick
 }) => {
@@ -20,6 +22,7 @@ const PrimaryBtn: FC<Props> = ({
     <Button
       className={cn(className)}
       colorScheme='teal'
+      variant={variant}
       size={size}
       onClick={onClick}
     >

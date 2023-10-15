@@ -24,6 +24,13 @@ directions.forEach(direction => {
       value: `${value * LEN_ITEM_VALUE}px`,
       className: `${direction}-${value}`,
     })
+    if(value === 0) {
+      directionsRules.push({
+        key: direction,
+        value: `${value}`,
+        className: `${direction}-0`,
+      })
+    }
   })
 })
 
