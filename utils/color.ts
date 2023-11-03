@@ -29,7 +29,14 @@ const colorsClassName = (() => {
   return colors
 })()
 
+const VAR_COLOR_REGEX = /--((\w+)-(\d+))/
 export const getColorClassName = (color) => {
+  if(color.includes('var(') && VAR_COLOR_REGEX.test(color)) {
+    return {
+      isMatched: true,
+      value: VAR_COLOR_REGEX.exec(color)[1]
+    }
+  }
   if(!isValidColor(color)) {
     return {
       isMatched: false,

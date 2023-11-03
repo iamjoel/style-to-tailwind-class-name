@@ -21,7 +21,7 @@ font-size: 14px;
 font-weight: 500;
 text-align: center;
 line-height: 1.5;
-color: #FCFCFD;
+color: var(--gray-500, #667085);
 `
 
 const Page: FC = () => {
@@ -45,7 +45,7 @@ const Page: FC = () => {
   const handleTransform = () => {
     const { classNames, unMatchedStyles } = getClassNames(styles, typographyStyleOnly ? typographyStyle : undefined)
     if (classNames.length > 0) {
-      console.log(classNames)
+      // console.log(classNames)
       setClassNames(classNames.join(' '))
       setUnMatchedStyles(unMatchedStyles.map(({ key, value }) => `${key}: ${value};`).join('\n'))
     }
