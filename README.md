@@ -16,7 +16,7 @@ Navigate to the homepage at https://localhost:3000.
 - [x] Sort class name.
 - [x] Support Rules: position, flex, border, margin, padding, typography
 - [x] Parse color to tailwind color name. Support read from tailwind config.
-- [x] Support Figma color var.
+- [x] Support Figma color includes var.
 - UI
   - [x] show transformed class name and unmatched style.
   - [x] support only show typography style.
