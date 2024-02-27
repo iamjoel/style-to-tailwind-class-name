@@ -44,6 +44,8 @@ const supportFontWeights = [
   },
 ]
 
+const supportTextTransform = ['uppercase', 'capitalize']
+
 const supportLineHeights = [
   {
     value: '16px',
@@ -113,6 +115,15 @@ supportFontWeights.forEach(({value, className}) => {
   })
 })
 
+const textTransform = []
+supportTextTransform.forEach(value => {
+  textTransform.push({
+    key: 'text-transform',
+    value,
+    className: value,
+  })
+})
+
 const lineHeight = []
 supportLineHeights.forEach(({value, className}) => {
   lineHeight.push({
@@ -140,7 +151,14 @@ supportColors.forEach(({value, className}) => {
   })
 })
 
-const rules = [...fontSize, ...fontWeight, ...lineHeight, ...textAlign, ...color]
+const rules = [
+  ...fontSize,
+  ...fontWeight,
+  ...lineHeight,
+  ...textTransform,
+  ...textAlign,
+  ...color
+]
 
 export const dynamicRules = [
   {

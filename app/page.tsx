@@ -20,6 +20,7 @@ background: #f60;
 font-size: 14px;
 font-weight: 500;
 text-align: center;
+text-transform: uppercase;
 line-height: 1.5;
 color: var(--gray-500, #667085);
 `

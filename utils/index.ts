@@ -58,7 +58,7 @@ export const getClassNames = (styles: string, whiteList?: string[]) => {
   })).filter(({key}) => !ignoreStyles.includes(key))
   if(whiteList?.length > 0) {
     styleArr = styleArr.filter(({key}) => whiteList.includes(key))
-    console.log(styleArr)
+    // console.log(styleArr)
   }
   const transformedStyles = styleArr.map(style => transformStyle(style)).flat(1)
   const sortedStyles = sortStyles(transformedStyles)
